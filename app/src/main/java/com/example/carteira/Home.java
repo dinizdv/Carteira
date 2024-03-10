@@ -1,9 +1,8 @@
 package com.example.carteira;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Home extends AppCompatActivity {
 
@@ -11,6 +10,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
     }
 }

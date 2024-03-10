@@ -3,6 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#00b3ff</color>
-    <color name="red">#d70000</color>
+    <color name="red">#b10303</color>
+    <color name="red_light">#ff9494</color>
     <color name="gray">#989898</color>
+    <color name="particle_color">#FF0000</color> <!-- Defina a cor da partícula, substitua #FF0000 pelo código de cor desejado -->
+
 </resources>
