@@ -126,6 +126,7 @@
         app:layout_constraintStart_toStartOf="@id/containerLogin"
         app:layout_constraintEnd_toEndOf="@id/containerLogin"
         app:layout_constraintBottom_toBottomOf="@id/containerLogin"
+        android:onClick="entrar"
         />
 
 
