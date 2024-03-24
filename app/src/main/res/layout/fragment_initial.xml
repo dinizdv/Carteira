@@ -5,13 +5,30 @@
     android:layout_height="match_parent"
     tools:context=".fragments.InitialFragment"
     >
+    <include layout="@layout/carteirinha_menor"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Initial Fragment"
-        android:textSize="25dp"
-        android:layout_centerInParent="true"
-        />
+        android:orientation="horizontal"
+        android:layout_marginTop="320dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="30dp"
+        >
+
+        <include layout="@layout/qrcode_square"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            />
+
+        <include layout="@layout/recuperar_carteirinha_square"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_marginLeft="40dp"
+             />
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>

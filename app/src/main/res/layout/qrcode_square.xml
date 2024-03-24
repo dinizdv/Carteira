@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <EditText
+        android:id="@+id/qrcode_square"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:minHeight="160dp"
+        android:background="@drawable/container_login"
+        android:text="Qr-code"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:textAlignment="center"
+        android:paddingTop="42dp"
+        android:paddingBottom="40dp"
+        android:drawableBottom="@drawable/baseline_qrcode_bigger"
+        />
+
+</RelativeLayout>

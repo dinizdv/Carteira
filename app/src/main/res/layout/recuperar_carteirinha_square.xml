@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <EditText
+        android:id="@+id/recuperar_carteirinha_square"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:minHeight="160dp"
+        android:background="@drawable/container_login"
+        android:text="Carteira digital"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:drawableBottom="@drawable/baseline_recuperar_carteirinha_bigger"
+        android:paddingTop="48dp"
+        android:paddingBottom="36dp"
+        />
+
+</RelativeLayout>
