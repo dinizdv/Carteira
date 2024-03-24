@@ -1,4 +1,4 @@
-package com.example.carteira;
+package com.example.carteira.particles;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,6 +9,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+
+import com.example.carteira.R;
 
 public class Particles extends View {
 

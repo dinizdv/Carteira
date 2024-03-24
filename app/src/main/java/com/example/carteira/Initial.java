@@ -7,6 +7,10 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.carteira.fragments.ContaFragment;
+import com.example.carteira.fragments.DuvidasFragment;
+import com.example.carteira.fragments.InitialFragment;
+import com.example.carteira.fragments.QrcodeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
