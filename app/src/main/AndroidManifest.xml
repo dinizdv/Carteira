@@ -19,7 +19,7 @@
             android:name=".Initial"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".Login"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
