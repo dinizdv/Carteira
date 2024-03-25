@@ -4,11 +4,12 @@
     android:layout_height="160dp">
 
     <EditText
+        android:fontFamily="@font/poppins"
         android:id="@+id/qrcode_square"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:minHeight="160dp"
-        android:background="@drawable/container_login"
+        android:background="@drawable/container_square"
         android:text="Qr-code"
         android:textColor="@color/white"
         android:textSize="14dp"

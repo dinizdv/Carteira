@@ -4,10 +4,11 @@
     android:layout_height="280dp">
 
     <EditText
+        android:fontFamily="@font/poppins"
         android:layout_width="360dp"
         android:layout_height="240dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/container_login"
+        android:background="@drawable/container_square"
         android:layout_marginTop="40dp"
         android:text="Carteirinha e suas informações"
         android:textColor="@color/white"
