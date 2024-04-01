@@ -1,6 +1,4 @@
 package com.example.carteira;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,12 +7,14 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carteira.controllers.LoginController;
+import com.example.carteira.services.ApiService;
 
 public class Login extends AppCompatActivity {
 
     EditText etUser, etPassword;
     Button btnLogin;
     LoginController loginController;
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,9 @@ public class Login extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.buttonLogin);
 
-        loginController = new LoginController(this);
+        apiService = new ApiService();
+
+        loginController = new LoginController(this, apiService);
 
         login();
 
@@ -39,10 +41,7 @@ public class Login extends AppCompatActivity {
                 String username = etUser.getText().toString();
                 String password = etPassword.getText().toString();
 
-                loginController.loginUsuario(username, password);
-
-                Intent intent = new Intent(Login.this, Initial.class);
-                startActivity(intent);
+                loginController.login(username, password);
             }
         });
     }

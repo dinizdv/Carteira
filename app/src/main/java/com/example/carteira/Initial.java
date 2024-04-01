@@ -17,7 +17,6 @@ import com.google.android.material.navigation.NavigationBarView;
 public class Initial extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    InitialFragment initialFragment = new InitialFragment();
     DuvidasFragment duvidasFragment = new DuvidasFragment();
     QrcodeFragment qrcodeFragment = new QrcodeFragment();
     ContaFragment contaFragment = new ContaFragment();
@@ -27,13 +26,15 @@ public class Initial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
 
+        InitialFragment initialFragment = new InitialFragment();
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, initialFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(MenuItem item) {
                 int id = item.getItemId();
                 if (id == R.id.inicio) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, initialFragment).commit();

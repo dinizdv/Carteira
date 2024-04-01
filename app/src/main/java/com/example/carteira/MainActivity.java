@@ -1,20 +1,14 @@
 package com.example.carteira;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.os.StrictMode;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.carteira.controllers.MainActivityController;
+import com.example.carteira.services.ApiService;
 
 public class MainActivity extends AppCompatActivity {
 
     MainActivityController controller;
-
-    SharedPreferences sharedPreferences;
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,26 +17,10 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        sharedPreferences = getSharedPreferences("Controle_Acesso", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("JWToken", null);
+        apiService = new ApiService();
+        controller = new MainActivityController(this, apiService);
 
-        controller = new MainActivityController(token);
-
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (token != null && controller.validarToken()) {
-                    Intent intent = new Intent(MainActivity.this, Initial.class);
-                    startActivity(intent);
-                } else {
-                    sharedPreferences.edit().remove("JWToken").apply();
-
-                    Intent intent = new Intent(MainActivity.this, Login.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        }, 3000);
+        controller.validarToken();
     }
 }
 
