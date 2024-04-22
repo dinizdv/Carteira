@@ -24,10 +24,11 @@ public class MainActivityController {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String token = sharedPreferences.getString("JWToken", null);
-                Response response = apiService.validateToken(token);
+                String token = sharedPreferences.getString("JWToken", "");
 
-                if (token != null && response.isSuccessful()) {
+                Response response = apiService.validateToken(null);
+
+                if (!token.equals("") && response.isSuccessful()) {
                     Intent intent = new Intent(activity, Initial.class);
                     activity.startActivity(intent);
                 } else {

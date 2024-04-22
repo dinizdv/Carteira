@@ -1,5 +1,7 @@
 package com.example.carteira;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.carteira.controllers.MainActivityController;
@@ -20,7 +22,12 @@ public class MainActivity extends AppCompatActivity {
         apiService = new ApiService();
         controller = new MainActivityController(this, apiService);
 
-        controller.validarToken();
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                controller.validarToken();
+            }
+        }, 3000);
     }
 }
 

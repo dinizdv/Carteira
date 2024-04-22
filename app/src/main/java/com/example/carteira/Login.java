@@ -7,6 +7,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carteira.controllers.LoginController;
+import com.example.carteira.repositories.UsuarioRepository;
 import com.example.carteira.services.ApiService;
 
 public class Login extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class Login extends AppCompatActivity {
     Button btnLogin;
     LoginController loginController;
     ApiService apiService;
+    UsuarioRepository usuarioRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,9 @@ public class Login extends AppCompatActivity {
         btnLogin = findViewById(R.id.buttonLogin);
 
         apiService = new ApiService();
+        usuarioRepository = new UsuarioRepository(this);
 
-        loginController = new LoginController(this, apiService);
+        loginController = new LoginController(this, apiService, usuarioRepository);
 
         login();
 

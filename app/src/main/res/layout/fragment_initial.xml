@@ -1,17 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InitialFragment"
-    >
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragments.InitialFragment">
 
     <TextView
+        android:id="@+id/titleInit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Initial Fragment"
-        android:textSize="25dp"
-        android:layout_centerInParent="true"
-        />
+        android:text="Bem Vindo, Lucas!"
+        android:fontFamily="@font/poppins"
+        android:textSize="32sp"
+        android:layout_marginBottom="60dp"
+        android:padding="20dp"
+        android:gravity="center">
+    </TextView>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/card_layout"
+        android:layout_width="395dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/card_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/icon_aluno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/icon_card_background"
+            android:fontFamily="@font/poppins"
+            android:textStyle="bold"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="1dp"
+            android:text="Aluno">
+        </TextView>
+
+        <TextView
+            android:id="@+id/nome_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icon_aluno"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/matricula_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nome_text_view"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="3dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="3dp"
+            android:width="50dp"
+            android:height="20dp"
+            android:background="@drawable/icon_card_background"
+            android:drawableStart="@drawable/baseline_add_card_24"
+            android:fontFamily="@font/poppins"
+            android:paddingStart="70dp"
+            android:paddingEnd="70dp"
+            android:text="Acessar Carteirinha Digital">
+
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:id="@+id/card_layout_qr"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/card_background"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/qr_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/poppins"
+                android:textStyle="bold"
+                android:text="QR Code"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qrcode"></ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/card_layout_mensagem"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/card_background"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mensagem_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:text="Carteirinha Física"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/carteirinha"></ImageView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

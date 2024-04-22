@@ -1,6 +1,8 @@
 package com.example.carteira.services;
 
 import java.io.IOException;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -10,7 +12,7 @@ import okhttp3.Response;
 
 public class ApiService {
 
-    private final String url = "http://10.0.2.2:8080";
+    private final String url = "https://api-controle-acesso-latest.onrender.com";
     private OkHttpClient client = new OkHttpClient();
 
     public Response getToken(String username, String password) throws IOException {
@@ -37,7 +39,7 @@ public class ApiService {
 
         try {
             Request request = new Request.Builder()
-                    .url(url + "/validarToken")
+                    .url(url + "/login/validarToken")
                     .addHeader("Authorization", "Bearer "+ token)
                     .build();
 
