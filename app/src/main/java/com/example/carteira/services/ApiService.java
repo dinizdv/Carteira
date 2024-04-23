@@ -1,6 +1,9 @@
 package com.example.carteira.services;
 
+import android.util.Log;
+
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
@@ -13,7 +16,7 @@ import okhttp3.Response;
 public class ApiService {
 
     private final String url = "https://api-controle-acesso-latest.onrender.com";
-    private OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client = new OkHttpClient().newBuilder().callTimeout(1000, TimeUnit.SECONDS).build();
 
     public Response getToken(String username, String password) throws IOException {
 

@@ -104,13 +104,17 @@ public class LoginController {
     }
 
     private void adicionarUsuarioNoBanco(UsuarioModel usuarioModel) {
-        if (usuarioRepository.getByNome(usuarioModel.getNome()) == null) {
-            Long id = usuarioRepository.adicionarUsuario(usuarioModel);
-            if (id != -1) {
-                irParaInitialActivity(usuarioModel);
-            } else {
-                mostrarToast("Tente Novamente!");
-            }
+        Long id = usuarioRepository.adicionarUsuario(usuarioModel);
+
+        if (id != -1) {
+            UsuarioModel user = usuarioRepository.getByNome(usuarioModel.getNome());
+
+            SharedPreferences.Editor editor = sharedPreferences.edit().putString("idUsuario", user.getId().toString());
+            editor.apply();
+
+            irParaInitialActivity(usuarioModel);
+        } else {
+            mostrarToast("Tente Novamente!");
         }
     }
 

@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.os.StrictMode;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.carteira.controllers.MainActivityController;
+import com.example.carteira.repositories.UsuarioRepository;
 import com.example.carteira.services.ApiService;
 
 public class MainActivity extends AppCompatActivity {

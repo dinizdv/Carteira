@@ -80,5 +80,44 @@ public class UsuarioRepository {
         return usuario;
     }
 
+    public UsuarioModel getById(String id) {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        UsuarioModel usuario = null;
+
+        //WHERE
+        String selecao = DatabaseHelper.COLUMN_CPF + " = ?";
+        String[] argumentos = {id};
+
+        Cursor cursor = db.query(
+                DatabaseHelper.TABLE_USUARIO,
+                null,
+                selecao,
+                argumentos,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+
+            usuario = new UsuarioModel(
+                    cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ID)),
+                    LocalDate.parse(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_DATA_NASCIMENTO))),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NOME)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_MATRICULA)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CURSO)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CPF)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NIVEL)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ROLE))
+            );
+            cursor.close();
+        }
+
+        db.close();
+        return usuario;
+    }
+
 
 }

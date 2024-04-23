@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import com.example.carteira.Initial;
 import com.example.carteira.Login;
+import com.example.carteira.models.UsuarioModel;
+import com.example.carteira.repositories.UsuarioRepository;
 import com.example.carteira.services.ApiService;
 
 import okhttp3.Response;
@@ -13,6 +15,7 @@ public class MainActivityController {
     private ApiService apiService;
     private Activity activity;
     private SharedPreferences sharedPreferences;
+    private UsuarioRepository usuarioRepository;
 
     public MainActivityController(Activity activity, ApiService apiService) {
         this.apiService = apiService;
@@ -25,15 +28,16 @@ public class MainActivityController {
             @Override
             public void run() {
                 String token = sharedPreferences.getString("JWToken", "");
-
-                Response response = apiService.validateToken(null);
+                String id = sharedPreferences.getString("idUsuario", "");
+                Response response = apiService.validateToken(token);
 
                 if (!token.equals("") && response.isSuccessful()) {
+                    UsuarioModel usuario = usuarioRepository.getById(id);
                     Intent intent = new Intent(activity, Initial.class);
+                    intent.putExtra("Usuario", usuarioRepository.getById(usuario.getId().toString()));
                     activity.startActivity(intent);
                 } else {
-                    sharedPreferences.edit().remove("JWToken").apply();
-
+                    sharedPreferences.edit().remove("JWToken").remove("idUsuario").apply();
                     Intent intent = new Intent(activity, Login.class);
                     activity.startActivity(intent);
                     activity.finish();
