@@ -108,6 +108,7 @@ public class LoginController {
 
         if (id != -1) {
             UsuarioModel user = usuarioRepository.getByNome(usuarioModel.getNome());
+            Log.i("APP", "a" + user.getId().toString());
 
             SharedPreferences.Editor editor = sharedPreferences.edit().putString("idUsuario", user.getId().toString());
             editor.apply();

@@ -3,6 +3,7 @@ package com.example.carteira.fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ public class InitialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_initial, container, false);
 
-        usuario =  (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
+        usuario = (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
 
         txtTitle = view.findViewById(R.id.titleInit);
         txtTitle.setText("Bem Vindo, " + usuario.getNome() +"!");

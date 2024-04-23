@@ -3,6 +3,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
+
 import com.example.carteira.Initial;
 import com.example.carteira.Login;
 import com.example.carteira.models.UsuarioModel;
@@ -17,9 +19,10 @@ public class MainActivityController {
     private SharedPreferences sharedPreferences;
     private UsuarioRepository usuarioRepository;
 
-    public MainActivityController(Activity activity, ApiService apiService) {
+    public MainActivityController(Activity activity, ApiService apiService, UsuarioRepository usuarioRepository) {
         this.apiService = apiService;
         this.activity = activity;
+        this.usuarioRepository = usuarioRepository;
         this.sharedPreferences = activity.getSharedPreferences("Controle_Acesso", Context.MODE_PRIVATE);
     }
 
@@ -33,13 +36,17 @@ public class MainActivityController {
 
                 if (!token.equals("") && response.isSuccessful()) {
                     UsuarioModel usuario = usuarioRepository.getById(id);
+
                     Intent intent = new Intent(activity, Initial.class);
-                    intent.putExtra("Usuario", usuarioRepository.getById(usuario.getId().toString()));
+                    intent.putExtra("Usuario", usuario);
+
                     activity.startActivity(intent);
                 } else {
                     sharedPreferences.edit().remove("JWToken").remove("idUsuario").apply();
+
                     Intent intent = new Intent(activity, Login.class);
                     activity.startActivity(intent);
+
                     activity.finish();
                 }
             }

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.carteira.db.DatabaseHelper;
 import com.example.carteira.models.UsuarioModel;
@@ -46,7 +47,7 @@ public class UsuarioRepository {
         UsuarioModel usuario = null;
 
         //WHERE
-        String selecao = DatabaseHelper.COLUMN_CPF + " = ?";
+        String selecao = DatabaseHelper.COLUMN_NOME + " = ?";
         String[] argumentos = {nome};
 
         Cursor cursor = db.query(
@@ -84,8 +85,7 @@ public class UsuarioRepository {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         UsuarioModel usuario = null;
 
-        //WHERE
-        String selecao = DatabaseHelper.COLUMN_CPF + " = ?";
+        String selecao = DatabaseHelper.COLUMN_ID + " = ?";
         String[] argumentos = {id};
 
         Cursor cursor = db.query(
@@ -97,8 +97,7 @@ public class UsuarioRepository {
                 null,
                 null
         );
-
-        if (cursor != null && cursor.moveToFirst()) {
+        cursor.moveToFirst();
 
             usuario = new UsuarioModel(
                     cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ID)),
@@ -113,7 +112,6 @@ public class UsuarioRepository {
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ROLE))
             );
             cursor.close();
-        }
 
         db.close();
         return usuario;

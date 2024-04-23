@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     MainActivityController controller;
     ApiService apiService;
+    UsuarioRepository usuarioRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         apiService = new ApiService();
-        controller = new MainActivityController(this, apiService);
+        usuarioRepository = new UsuarioRepository(this);
+        controller = new MainActivityController(this, apiService, usuarioRepository);
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
