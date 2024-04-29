@@ -1,4 +1,51 @@
 <resources>
     <string name="app_name">Carteira</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="duvida1">Como recuperar senha</string>
+    <string name="resposta1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
+        unknown printer took a galley of type and scrambled it to make a type specimen book. It
+        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960swith the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recentlywith desktop like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="duvida2">Como solicitar carteirinha física</string>
+    <string name="resposta2">Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
+        unknown printer took a galley of type and scrambled it to make a type specimen book. It
+        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960swith the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recentlywith desktop like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="duvida3">Termos de privacidade</string>
+    <string name="resposta3">Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
+        unknown printer took a galley of type and scrambled it to make a type specimen book. It
+        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960swith the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recentlywith desktop like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="duvida4">Como alterar foto de perfil</string>
+    <string name="resposta4">Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
+        unknown printer took a galley of type and scrambled it to make a type specimen book. It
+        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960swith the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recentlywith desktop like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="duvida5">Como alterar o tema do app</string>
+    <string name="resposta5">Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
+        unknown printer took a galley of type and scrambled it to make a type specimen book. It
+        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960swith the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recentlywith desktop like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+
+
 </resources>

@@ -17,6 +17,7 @@ import com.example.carteira.models.UsuarioModel;
 
 public class InitialFragment extends Fragment {
 
+
     private TextView txt1, txt2, txtTitle;
     private Button btnAcessar;
 
