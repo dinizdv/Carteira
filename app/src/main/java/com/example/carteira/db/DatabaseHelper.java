@@ -27,14 +27,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static final String CREATE_TABLE_USUARIO = "CREATE TABLE " + TABLE_USUARIO + "(" +
-            COLUMN_ID + " BIGINT PRIMARY KEY," +
+            COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_DATA_NASCIMENTO + " DATE," +
             COLUMN_NOME + " VARCHAR(100)," +
             COLUMN_MATRICULA + " VARCHAR(8)," +
             COLUMN_CURSO + " VARCHAR(100)," +
             COLUMN_CPF + " VARCHAR(15)," +
             COLUMN_EMAIL + " VARCHAR(70)," +
-            COLUMN_FOTO + " VARCHAR(70)," +
+            COLUMN_FOTO + " BLOB," +
             COLUMN_NIVEL + " VARCHAR(100)," +
             COLUMN_ROLE + " VARCHAR(15)" + ")";
 

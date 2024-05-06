@@ -6,10 +6,11 @@ import java.util.UUID;
 
 public class UsuarioModel implements Serializable {
     private Long id;
-    private String nome, matricula, curso, cpf, email, foto, nivel, role;
+    private String nome, matricula, curso, cpf, email, nivel, role;
+    private byte[] fotoBytes;
     private LocalDate data_nascimento;
 
-    public UsuarioModel(Long id, LocalDate data_nascimento, String nome, String matricula, String curso, String cpf, String email, String foto, String nivel, String role) {
+    public UsuarioModel(Long id, LocalDate data_nascimento, String nome, String matricula, String curso, String cpf, String email, byte[] fotoBytes, String nivel, String role) {
         this.id = id;
         this.data_nascimento = data_nascimento;
         this.nome = nome;
@@ -17,19 +18,19 @@ public class UsuarioModel implements Serializable {
         this.curso = curso;
         this.cpf = cpf;
         this.email = email;
-        this.foto = foto;
+        this.fotoBytes = fotoBytes;
         this.nivel = nivel;
         this.role = role;
     }
 
-    public UsuarioModel(LocalDate data_nascimento, String nome, String matricula, String curso, String cpf, String email, String foto, String nivel, String role) {
+    public UsuarioModel(LocalDate data_nascimento, String nome, String matricula, String curso, String cpf, String email, byte[] fotoBytes, String nivel, String role) {
         this.data_nascimento = data_nascimento;
         this.nome = nome;
         this.matricula = matricula;
         this.curso = curso;
         this.cpf = cpf;
         this.email = email;
-        this.foto = foto;
+        this.fotoBytes = fotoBytes;
         this.nivel = nivel;
         this.role = role;
     }
@@ -66,12 +67,12 @@ public class UsuarioModel implements Serializable {
         this.email = email;
     }
 
-    public String getFoto() {
-        return foto;
+    public byte[] getFotoBytes() {
+        return fotoBytes;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setFoto(byte[] fotoBytes) {
+        this.fotoBytes = fotoBytes;
     }
 
     public String getNivel() {
@@ -95,7 +96,7 @@ public class UsuarioModel implements Serializable {
                 ", curso='" + curso + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
-                ", foto='" + foto + '\'' +
+                ", foto='" + fotoBytes + '\'' +
                 ", nivel='" + nivel + '\'' +
                 ", role='" + role + '\'' +
                 ", data_nascimento=" + data_nascimento +

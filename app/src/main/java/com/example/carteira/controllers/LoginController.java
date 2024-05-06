@@ -3,6 +3,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.Toast;
 import com.example.carteira.Initial;
@@ -11,8 +13,12 @@ import com.example.carteira.repositories.UsuarioRepository;
 import com.example.carteira.services.ApiService;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+
+import okhttp3.FormBody;
 import okhttp3.Response;
 
 public class LoginController {
@@ -62,7 +68,7 @@ public class LoginController {
         salvarTokenJWT(jwtToken);
 
         if (usuario != null) {
-            irParaInitialActivity(usuario);
+            irParaInitialActivity(usuario, null);
         } else {
             processarUsuario(idUsuario, jwtToken);
         }
@@ -83,11 +89,18 @@ public class LoginController {
 
             UsuarioModel usuarioModel = extrairUsuarioModel(jsonu);
 
-            adicionarUsuarioNoBanco(usuarioModel);
+            Bitmap bitmap = apiService.getFotoUsuario(idUsuario, jwtToken);
+                if (bitmap != null) {
+                    adicionarFotoNoBanco(usuarioModel, bitmap);
+                    irParaInitialActivity(usuarioModel, bitmap);
+                } else {
+                    mostrarToast("Falha ao obter imagem do usuário");
+                }
         } else {
             mostrarToast("Erro ao obter informações do usuário");
         }
     }
+
 
 
     private UsuarioModel extrairUsuarioModel(JSONObject jsonu) throws JSONException {
@@ -97,10 +110,9 @@ public class LoginController {
         String curso = jsonu.getString("curso");
         String email = jsonu.getString("email");
         String cpf = jsonu.getString("cpf");
-        String foto = jsonu.getString("foto");
         String nivel = jsonu.getString("nivel");
 
-        return new UsuarioModel(data_nascimento, nome, matricula, curso, cpf, email, foto, nivel, "ROLE_ADMIN");
+        return new UsuarioModel(data_nascimento, nome, matricula, curso, cpf, email, null, nivel, "ROLE_ADMIN");
     }
 
     private void adicionarUsuarioNoBanco(UsuarioModel usuarioModel) {
@@ -108,22 +120,37 @@ public class LoginController {
 
         if (id != -1) {
             UsuarioModel user = usuarioRepository.getByNome(usuarioModel.getNome());
-            Log.i("APP", "a" + user.getId().toString());
 
             SharedPreferences.Editor editor = sharedPreferences.edit().putString("idUsuario", user.getId().toString());
             editor.apply();
 
-            irParaInitialActivity(usuarioModel);
         } else {
             mostrarToast("Tente Novamente!");
         }
     }
 
-    private void irParaInitialActivity(UsuarioModel usuario) {
+    private void irParaInitialActivity(UsuarioModel usuario, Bitmap bitmap) {
         Intent intent = new Intent(activity, Initial.class);
         intent.putExtra("Usuario", usuario);
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        intent.putExtra("ImagemUsuario", byteArray);
+
         activity.startActivity(intent);
         activity.finish();
+    }
+
+    private void adicionarFotoNoBanco(UsuarioModel usuario, Bitmap foto) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        foto.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        usuario.setFoto(byteArray);
+
+        adicionarUsuarioNoBanco(usuario);
+        irParaInitialActivity(usuario, foto);
     }
 
     private void mostrarToast(String message) {

@@ -32,7 +32,7 @@ public class UsuarioRepository {
             values.put(DatabaseHelper.COLUMN_CURSO, usuario.getCurso());
             values.put(DatabaseHelper.COLUMN_CPF, usuario.getCpf());
             values.put(DatabaseHelper.COLUMN_EMAIL, usuario.getEmail());
-            values.put(DatabaseHelper.COLUMN_FOTO, usuario.getFoto());
+            values.put(DatabaseHelper.COLUMN_FOTO, usuario.getFotoBytes());
             values.put(DatabaseHelper.COLUMN_NIVEL, usuario.getNivel());
             values.put(DatabaseHelper.COLUMN_ROLE, usuario.getRole());
 
@@ -46,7 +46,6 @@ public class UsuarioRepository {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         UsuarioModel usuario = null;
 
-        //WHERE
         String selecao = DatabaseHelper.COLUMN_NOME + " = ?";
         String[] argumentos = {nome};
 
@@ -70,7 +69,7 @@ public class UsuarioRepository {
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CURSO)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CPF)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
+                    cursor.getBlob(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NIVEL)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ROLE))
             );
@@ -97,8 +96,7 @@ public class UsuarioRepository {
                 null,
                 null
         );
-        cursor.moveToFirst();
-
+        if (cursor != null && cursor.moveToFirst()) {
             usuario = new UsuarioModel(
                     cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ID)),
                     LocalDate.parse(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_DATA_NASCIMENTO))),
@@ -107,10 +105,11 @@ public class UsuarioRepository {
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CURSO)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CPF)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
+                    cursor.getBlob(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NIVEL)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ROLE))
             );
+        }
             cursor.close();
 
         db.close();
