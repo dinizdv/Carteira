@@ -3,12 +3,14 @@ package com.example.carteira.fragments;
 import android.animation.LayoutTransition;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -24,7 +26,7 @@ public class DuvidasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_duvidas, container, false);
+        View view = inflater.inflate(R.layout.fragment_duvidas, container, false);
 
         details1 = view.findViewById(R.id.details);
         details2 = view.findViewById(R.id.details2);
@@ -34,6 +36,7 @@ public class DuvidasFragment extends Fragment {
 
         layout = view.findViewById(R.id.layout1);
         layout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+
 
         CardView cardView1 = view.findViewById(R.id.card1);
         CardView cardView2 = view.findViewById(R.id.card2);
@@ -79,11 +82,8 @@ public class DuvidasFragment extends Fragment {
     }
 
     public void expand(View view, TextView details) {
-        int v = (details.getVisibility() == View.GONE)? View.VISIBLE: View.GONE;
-
         TransitionManager.beginDelayedTransition(layout, new AutoTransition());
-        details.setVisibility(v);
+        details.setVisibility(View.GONE == details.getVisibility() ? View.VISIBLE : View.GONE );
+        TransitionManager.endTransitions(layout);
     }
-
-
 }
