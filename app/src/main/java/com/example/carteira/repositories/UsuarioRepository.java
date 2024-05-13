@@ -69,7 +69,7 @@ public class UsuarioRepository {
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CURSO)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CPF)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL)),
-                    cursor.getBlob(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NIVEL)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ROLE))
             );
@@ -105,7 +105,7 @@ public class UsuarioRepository {
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CURSO)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CPF)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL)),
-                    cursor.getBlob(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FOTO)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NIVEL)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ROLE))
             );

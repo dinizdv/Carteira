@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import com.example.carteira.R;
 import com.example.carteira.models.UsuarioModel;
 
+import java.util.Base64;
+
 public class ContaFragment extends Fragment {
 
     ImageView fotoPerfil;
@@ -36,7 +38,8 @@ public class ContaFragment extends Fragment {
 
         usuario = (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
 
-        byte[] byteArray = getActivity().getIntent().getByteArrayExtra("ImagemUsuario");
+        String image = getActivity().getIntent().getStringExtra("ImagemUsuario");
+        byte[] byteArray = Base64.getDecoder().decode(image);
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         Bitmap roundedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(roundedBitmap);

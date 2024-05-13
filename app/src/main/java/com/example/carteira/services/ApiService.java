@@ -3,7 +3,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -67,7 +70,7 @@ public class ApiService {
         }
     }
 
-    public Bitmap getFotoUsuario(String id, String token) {
+    public String getFotoUsuario(String id, String token) {
 
         try {
             Request request = new Request.Builder()
@@ -82,17 +85,17 @@ public class ApiService {
                 throw new IOException("Código de resposta inesperado: " + response);
             }
 
-            return getBitmapFromResponse(response);
+            return getBase64Image(response);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    private Bitmap getBitmapFromResponse(Response response) throws IOException {
+    private String getBase64Image(Response response) throws IOException {
         if (response.body() != null) {
             byte[] bytes = response.body().bytes();
-            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            return Base64.getEncoder().encodeToString(bytes);
         } else {
             return null;
         }

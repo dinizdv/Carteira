@@ -89,10 +89,10 @@ public class LoginController {
 
             UsuarioModel usuarioModel = extrairUsuarioModel(jsonu);
 
-            Bitmap bitmap = apiService.getFotoUsuario(idUsuario, jwtToken);
-                if (bitmap != null) {
-                    adicionarFotoNoBanco(usuarioModel, bitmap);
-                    irParaInitialActivity(usuarioModel, bitmap);
+            String image = apiService.getFotoUsuario(idUsuario, jwtToken);
+                if (image != null) {
+                    adicionarFotoNoBanco(usuarioModel, image);
+                    irParaInitialActivity(usuarioModel, image);
                 } else {
                     mostrarToast("Falha ao obter imagem do usuário");
                 }
@@ -129,25 +129,19 @@ public class LoginController {
         }
     }
 
-    private void irParaInitialActivity(UsuarioModel usuario, Bitmap bitmap) {
+    private void irParaInitialActivity(UsuarioModel usuario, String foto) {
         Intent intent = new Intent(activity, Initial.class);
         intent.putExtra("Usuario", usuario);
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        intent.putExtra("ImagemUsuario", byteArray);
+        intent.putExtra("ImagemUsuario", foto);
 
         activity.startActivity(intent);
         activity.finish();
     }
 
-    private void adicionarFotoNoBanco(UsuarioModel usuario, Bitmap foto) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        foto.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
+    private void adicionarFotoNoBanco(UsuarioModel usuario, String foto) {
 
-        usuario.setFoto(byteArray);
+        usuario.setFoto(foto);
 
         adicionarUsuarioNoBanco(usuario);
         irParaInitialActivity(usuario, foto);
