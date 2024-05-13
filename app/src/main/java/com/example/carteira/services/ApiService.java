@@ -19,7 +19,7 @@ public class ApiService {
     public Response getToken(String username, String password) throws IOException {
 
         try {
-            String registerData = "{\"matricula\":\"" + username + "\",\"senha\":\"" + password + "\"}";
+            String registerData = "{\"email\":\"" + username + "\",\"senha\":\"" + password + "\"}";
 
             MediaType json = MediaType.parse("application/json; charset=utf-8");
             RequestBody body = RequestBody.create(registerData, json);
