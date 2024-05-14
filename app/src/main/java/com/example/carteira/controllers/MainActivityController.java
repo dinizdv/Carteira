@@ -32,14 +32,17 @@ public class MainActivityController {
             public void run() {
                 String token = sharedPreferences.getString("JWToken", "");
                 String id = sharedPreferences.getString("idUsuario", "");
+
                 Response response = apiService.validateToken(token);
 
                 if (!token.equals("") && response.isSuccessful()) {
+                    Log.i("OK", String.valueOf(response.code()));
                     UsuarioModel usuario = usuarioRepository.getById(id);
 
                     Intent intent = new Intent(activity, Initial.class);
                     intent.putExtra("Usuario", usuario);
-                    intent.putExtra("ImagemUsuario", usuario.getFotoBytes());
+                    Log.i("OK", usuario.getFoto());
+                    intent.putExtra("ImagemUsuario", usuario.getFoto());
 
                     activity.startActivity(intent);
                 } else {

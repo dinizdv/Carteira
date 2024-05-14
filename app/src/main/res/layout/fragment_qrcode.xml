@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InitialFragment">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <TextView
-        android:fontFamily="@font/poppins"
+    <Button
+        android:id="@+id/btnGenerateQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Qr-code Fragment"
-        android:textSize="25dp"
-        android:layout_centerInParent="true"
-        />
+        android:text="Gerar QR Code"
+        android:layout_marginTop="20dp"/>
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/imageViewQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

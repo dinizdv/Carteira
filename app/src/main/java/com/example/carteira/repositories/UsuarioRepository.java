@@ -32,7 +32,7 @@ public class UsuarioRepository {
             values.put(DatabaseHelper.COLUMN_CURSO, usuario.getCurso());
             values.put(DatabaseHelper.COLUMN_CPF, usuario.getCpf());
             values.put(DatabaseHelper.COLUMN_EMAIL, usuario.getEmail());
-            values.put(DatabaseHelper.COLUMN_FOTO, usuario.getFotoBytes());
+            values.put(DatabaseHelper.COLUMN_FOTO, usuario.getFoto());
             values.put(DatabaseHelper.COLUMN_NIVEL, usuario.getNivel());
             values.put(DatabaseHelper.COLUMN_ROLE, usuario.getRole());
 

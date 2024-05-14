@@ -40,12 +40,15 @@ public class ContaFragment extends Fragment {
 
         String image = getActivity().getIntent().getStringExtra("ImagemUsuario");
         byte[] byteArray = Base64.getDecoder().decode(image);
+
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         Bitmap roundedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
         Canvas canvas = new Canvas(roundedBitmap);
         Paint paint = new Paint();
         paint.setAntiAlias(true);
         paint.setShader(new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+
         canvas.drawRoundRect(new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight()), bitmap.getWidth() / 2, bitmap.getHeight() / 2, paint);
 
         fotoPerfil.setImageBitmap(roundedBitmap);

@@ -101,8 +101,6 @@ public class LoginController {
         }
     }
 
-
-
     private UsuarioModel extrairUsuarioModel(JSONObject jsonu) throws JSONException {
         String nome = jsonu.getString("nome");
         LocalDate data_nascimento = LocalDate.parse(jsonu.getString("dataNascimento"));
@@ -112,7 +110,7 @@ public class LoginController {
         String cpf = jsonu.getString("cpf");
         String nivel = jsonu.getString("nivel");
 
-        return new UsuarioModel(data_nascimento, nome, matricula, curso, cpf, email, null, nivel, "ROLE_ADMIN");
+        return new UsuarioModel(data_nascimento, nome, matricula, curso, cpf, email, null, nivel, "ROLE_USER");
     }
 
     private void adicionarUsuarioNoBanco(UsuarioModel usuarioModel) {
@@ -133,6 +131,8 @@ public class LoginController {
         Intent intent = new Intent(activity, Initial.class);
         intent.putExtra("Usuario", usuario);
 
+        Log.i("OK", foto);
+
         intent.putExtra("ImagemUsuario", foto);
 
         activity.startActivity(intent);
@@ -142,8 +142,10 @@ public class LoginController {
     private void adicionarFotoNoBanco(UsuarioModel usuario, String foto) {
 
         usuario.setFoto(foto);
+        Log.i("OK", foto);
 
         adicionarUsuarioNoBanco(usuario);
+        Log.i("OK", "adicionado");
         irParaInitialActivity(usuario, foto);
     }
 

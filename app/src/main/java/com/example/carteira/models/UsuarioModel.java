@@ -66,7 +66,7 @@ public class UsuarioModel implements Serializable {
         this.email = email;
     }
 
-    public String getFotoBytes() {
+    public String getFoto() {
         return foto;
     }
 

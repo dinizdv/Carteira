@@ -43,7 +43,7 @@ public class ApiService {
 
         try {
             Request request = new Request.Builder()
-                    .url(url + "/login/validarToken")
+                    .url(url + "/validarToken")
                     .addHeader("Authorization", "Bearer "+ token)
                     .build();
 
