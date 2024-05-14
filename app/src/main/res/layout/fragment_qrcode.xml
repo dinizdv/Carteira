@@ -5,17 +5,40 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <Button
-        android:id="@+id/btnGenerateQR"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageViewFotoQrCode"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-70dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/nome_usuario_fragment_qrcode"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gerar QR Code"
-        android:layout_marginTop="20dp"/>
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginHorizontal="40dp"
+        android:backgroundTint="@null"
+        android:fontFamily="@font/poppins"
+        android:text="Escaneie o QR Code"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"
+        android:textSize="20dp" />
 
     <ImageView
         android:id="@+id/imageViewQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="30dp" />
 
 </LinearLayout>

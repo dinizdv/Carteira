@@ -1,14 +1,20 @@
 package com.example.carteira.fragments;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,10 +27,12 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.util.Base64;
+
 public class QrcodeFragment extends Fragment {
 
-    private Button btnGenerateQR;
-    private ImageView imageViewQR;
+    private TextView txtView;
+    private ImageView imageViewQR, fotoPerfil;
     UsuarioModel usuario;
 
     @Override
@@ -33,16 +41,17 @@ public class QrcodeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_qrcode, container, false);
 
         usuario = (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
+        String image = getActivity().getIntent().getStringExtra("ImagemUsuario");
 
-        btnGenerateQR = view.findViewById(R.id.btnGenerateQR);
         imageViewQR = view.findViewById(R.id.imageViewQR);
+        fotoPerfil = view.findViewById(R.id.imageViewFotoQrCode);
+        txtView = view.findViewById(R.id.nome_usuario_fragment_qrcode);
 
-        btnGenerateQR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generateQRCode(usuario.getMatricula());
-            }
-        });
+        generateQRCode(usuario.getMatricula());
+
+        Bitmap imagem = getFotoUsuario(image);
+        fotoPerfil.setImageBitmap(imagem);
+        txtView.setText(usuario.getNome());
 
         return view;
     }
@@ -50,9 +59,9 @@ public class QrcodeFragment extends Fragment {
     private void generateQRCode(String text) {
         try {
             Writer writer = new MultiFormatWriter();
-            BitMatrix bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, 1000, 1000);
+            BitMatrix bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, 900, 900);
 
-            Bitmap bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(900, 900, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(Color.TRANSPARENT);
 
@@ -71,5 +80,20 @@ public class QrcodeFragment extends Fragment {
         } catch (WriterException e) {
             e.printStackTrace();
         }
+    }
+
+    private Bitmap getFotoUsuario(String foto) {
+        byte[] byteArray = Base64.getDecoder().decode(foto);
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        Bitmap roundedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(roundedBitmap);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setShader(new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+
+        canvas.drawRoundRect(new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight()), bitmap.getWidth() / 2, bitmap.getHeight() / 2, paint);
+        return roundedBitmap;
     }
 }
