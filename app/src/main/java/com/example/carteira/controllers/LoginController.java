@@ -131,8 +131,6 @@ public class LoginController {
         Intent intent = new Intent(activity, Initial.class);
         intent.putExtra("Usuario", usuario);
 
-        Log.i("OK", foto);
-
         intent.putExtra("ImagemUsuario", foto);
 
         activity.startActivity(intent);
@@ -142,10 +140,8 @@ public class LoginController {
     private void adicionarFotoNoBanco(UsuarioModel usuario, String foto) {
 
         usuario.setFoto(foto);
-        Log.i("OK", foto);
 
         adicionarUsuarioNoBanco(usuario);
-        Log.i("OK", "adicionado");
         irParaInitialActivity(usuario, foto);
     }
 

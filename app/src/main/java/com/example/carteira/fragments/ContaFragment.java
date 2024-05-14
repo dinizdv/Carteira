@@ -1,5 +1,8 @@
 package com.example.carteira.fragments;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -11,12 +14,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.carteira.R;
+import com.example.carteira.ConfirmarConta;
 import com.example.carteira.models.UsuarioModel;
 
 import java.util.Base64;
@@ -26,6 +31,7 @@ public class ContaFragment extends Fragment {
     ImageView fotoPerfil;
     TextView nomeUsuario;
     UsuarioModel usuario;
+    Button alterarSenha;
 
 
     @Override
@@ -35,11 +41,36 @@ public class ContaFragment extends Fragment {
 
         fotoPerfil = view.findViewById(R.id.imageView3);
         nomeUsuario = view.findViewById(R.id.nome_usuario_fragment_conta);
+        alterarSenha = view.findViewById(R.id.alterar_senha);
 
         usuario = (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
 
         String image = getActivity().getIntent().getStringExtra("ImagemUsuario");
-        byte[] byteArray = Base64.getDecoder().decode(image);
+
+        Bitmap img = getFotoUsuario(image);
+
+        fotoPerfil.setImageBitmap(img);
+        nomeUsuario.setText(usuario.getNome());
+
+        alterarSenhaActivity(this.getActivity());
+
+        return view;
+    }
+
+    private void alterarSenhaActivity(Activity activity) {
+        alterarSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, ConfirmarConta.class);
+                intent.putExtra("Usuario", usuario);
+
+                startActivity(intent);
+            }
+        });
+    }
+
+    private Bitmap getFotoUsuario(String foto) {
+        byte[] byteArray = Base64.getDecoder().decode(foto);
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         Bitmap roundedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
@@ -50,10 +81,6 @@ public class ContaFragment extends Fragment {
         paint.setShader(new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
 
         canvas.drawRoundRect(new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight()), bitmap.getWidth() / 2, bitmap.getHeight() / 2, paint);
-
-        fotoPerfil.setImageBitmap(roundedBitmap);
-        nomeUsuario.setText(usuario.getNome());
-
-        return view;
+        return roundedBitmap;
     }
 }

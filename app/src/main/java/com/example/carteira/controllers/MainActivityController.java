@@ -36,7 +36,6 @@ public class MainActivityController {
                 Response response = apiService.validateToken(token);
 
                 if (!token.equals("") && response.isSuccessful()) {
-                    Log.i("OK", String.valueOf(response.code()));
                     UsuarioModel usuario = usuarioRepository.getById(id);
 
                     Intent intent = new Intent(activity, Initial.class);
@@ -45,6 +44,7 @@ public class MainActivityController {
                     intent.putExtra("ImagemUsuario", usuario.getFoto());
 
                     activity.startActivity(intent);
+                    activity.finish();
                 } else {
                     sharedPreferences.edit().remove("JWToken").remove("idUsuario").apply();
 

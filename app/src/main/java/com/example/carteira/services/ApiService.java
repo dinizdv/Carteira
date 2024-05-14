@@ -92,6 +92,27 @@ public class ApiService {
         }
     }
 
+    public Response resetSenha(String senha, String token) throws IOException {
+
+        try {
+            String registerData = "{\"newPassword\":\"" + senha + "\"}";
+
+            MediaType json = MediaType.parse("application/json; charset=utf-8");
+            RequestBody body = RequestBody.create(registerData, json);
+
+            Request request = new Request.Builder()
+                    .url(url + "/resetpassword")
+                    .post(body)
+                    .addHeader("Authorization", "Bearer " + token)
+                    .addHeader("content-type", "application/json; charset=utf-8")
+                    .build();
+
+            return client.newCall(request).execute();
+        } catch (Exception e) {
+            throw new RuntimeException("Algo deu Errado!");
+        }
+    }
+
     private String getBase64Image(Response response) throws IOException {
         if (response.body() != null) {
             byte[] bytes = response.body().bytes();
@@ -100,4 +121,5 @@ public class ApiService {
             return null;
         }
     }
+
 }

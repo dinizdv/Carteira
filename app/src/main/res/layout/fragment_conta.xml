@@ -40,6 +40,7 @@
         android:fontFamily="@font/poppins"/>
 
     <Button
+        android:id="@+id/alterar_senha"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="40dp"
@@ -63,22 +64,6 @@
         android:text="Alterar Tema"
         android:background="@drawable/button_shape"
         android:drawableLeft="@drawable/theme_"
-        android:drawablePadding="9dp"
-        android:fontFamily="@font/poppins"
-        android:paddingStart="12dp"
-        android:textColor="@color/white_light"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:backgroundTint="@null"/>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginBottom="30dp"
-        android:text="Alterar Foto"
-        android:background="@drawable/button_shape"
-        android:drawableLeft="@drawable/baseline_account_circle_24"
         android:drawablePadding="9dp"
         android:fontFamily="@font/poppins"
         android:paddingStart="12dp"
