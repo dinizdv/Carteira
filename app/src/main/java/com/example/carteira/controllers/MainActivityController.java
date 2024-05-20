@@ -40,7 +40,6 @@ public class MainActivityController {
 
                     Intent intent = new Intent(activity, Initial.class);
                     intent.putExtra("Usuario", usuario);
-                    Log.i("OK", usuario.getFoto());
                     intent.putExtra("ImagemUsuario", usuario.getFoto());
 
                     activity.startActivity(intent);

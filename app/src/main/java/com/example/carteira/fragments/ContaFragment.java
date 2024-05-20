@@ -3,6 +3,7 @@ package com.example.carteira.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.carteira.Login;
 import com.example.carteira.R;
 import com.example.carteira.ConfirmarConta;
 import com.example.carteira.models.UsuarioModel;
@@ -31,7 +33,8 @@ public class ContaFragment extends Fragment {
     ImageView fotoPerfil;
     TextView nomeUsuario;
     UsuarioModel usuario;
-    Button alterarSenha;
+    Button alterarSenha, sairConta;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -39,9 +42,12 @@ public class ContaFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_conta, container, false);
 
+        sharedPreferences = getActivity().getSharedPreferences("Controle_Acesso", Context.MODE_PRIVATE);
+
         fotoPerfil = view.findViewById(R.id.imageView3);
         nomeUsuario = view.findViewById(R.id.nome_usuario_fragment_conta);
         alterarSenha = view.findViewById(R.id.alterar_senha);
+        sairConta = view.findViewById(R.id.sair_conta);
 
         usuario = (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
 
@@ -53,6 +59,7 @@ public class ContaFragment extends Fragment {
         nomeUsuario.setText(usuario.getNome());
 
         alterarSenhaActivity(this.getActivity());
+        sairConta(this.getActivity());
 
         return view;
     }
@@ -63,6 +70,18 @@ public class ContaFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ConfirmarConta.class);
                 intent.putExtra("Usuario", usuario);
+
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void sairConta(Activity activity) {
+        sairConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPreferences.edit().clear().apply();
+                Intent intent = new Intent(activity, Login.class);
 
                 startActivity(intent);
             }

@@ -128,6 +128,7 @@ public class LoginController {
     }
 
     private void irParaInitialActivity(UsuarioModel usuario, String foto) {
+
         Intent intent = new Intent(activity, Initial.class);
         intent.putExtra("Usuario", usuario);
 
@@ -145,6 +146,7 @@ public class LoginController {
         irParaInitialActivity(usuario, foto);
     }
 
+
     private void mostrarToast(String message) {
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -153,4 +155,6 @@ public class LoginController {
             }
         });
     }
+
+
 }

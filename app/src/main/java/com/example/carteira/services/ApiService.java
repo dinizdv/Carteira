@@ -95,7 +95,7 @@ public class ApiService {
     public Response resetSenha(String senha, String token) throws IOException {
 
         try {
-            String registerData = "{\"newPassword\":\"" + senha + "\"}";
+            String registerData = "{\"senha\":\"" + senha + "\"}";
 
             MediaType json = MediaType.parse("application/json; charset=utf-8");
             RequestBody body = RequestBody.create(registerData, json);
@@ -105,6 +105,43 @@ public class ApiService {
                     .post(body)
                     .addHeader("Authorization", "Bearer " + token)
                     .addHeader("content-type", "application/json; charset=utf-8")
+                    .build();
+
+            return client.newCall(request).execute();
+        } catch (Exception e) {
+            throw new RuntimeException("Algo deu Errado!");
+        }
+    }
+
+    public Response requestCode(String email, String token) throws IOException {
+
+        try {
+            String registerData = "{\"email\":\"" + email + "\"}";
+
+            MediaType json = MediaType.parse("application/json; charset=utf-8");
+            RequestBody body = RequestBody.create(registerData, json);
+
+            Request request = new Request.Builder()
+                    .url(url + "/requestcode")
+                    .post(body)
+                    .addHeader("Authorization", "Bearer " + token)
+                    .addHeader("content-type", "application/json; charset=utf-8")
+                    .build();
+
+            return client.newCall(request).execute();
+        } catch (Exception e) {
+            throw new RuntimeException("Algo deu Errado!");
+        }
+    }
+
+    public Response validarQrCode(String id, String token) throws IOException {
+
+        try {
+
+            Request request = new Request.Builder()
+                    .url(url + "/usuario/qrcode/" + id)
+                    .get()
+                    .addHeader("Authorization", "Bearer " + token)
                     .build();
 
             return client.newCall(request).execute();

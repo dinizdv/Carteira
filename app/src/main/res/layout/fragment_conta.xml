@@ -73,6 +73,7 @@
         android:backgroundTint="@null"/>
 
     <Button
+        android:id="@+id/sair_conta"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="40dp"

@@ -50,23 +50,23 @@ public class TrocarSenha extends AppCompatActivity {
                 String senha =  trocaSenha.getText().toString();
                 String senhaNovamente = trocaSenhaNovamente.getText().toString();
 
-                if (senha.equals(senhaNovamente)) {
+                if (senha.equals(senhaNovamente) && !senha.equals("")) {
                     try {
                         Response response = apiService.resetSenha(senha, token);
                         if (response.isSuccessful()) {
-                            Toast.makeText(context, "Sucesso ao trocar Senha", Toast.LENGTH_LONG);
+                            Toast.makeText(context, "Sucesso ao trocar Senha", Toast.LENGTH_LONG).show();
                             finish();
                         } else {
-                            Toast.makeText(context, "Houve um Erro ao trocar Senha", Toast.LENGTH_LONG);
-                            finish();
+                            Toast.makeText(context, "Houve um erro ao trocar Senha", Toast.LENGTH_LONG).show();
+                            trocaSenha.setText("");
+                            trocaSenhaNovamente.setText("");
                         }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    Toast.makeText(context, "As Senhas não Correspondem", Toast.LENGTH_LONG);
+                    Toast.makeText(context, "As Senhas não Correspondem", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
     }

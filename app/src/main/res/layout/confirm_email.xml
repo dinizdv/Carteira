@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="220dp"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal"
+    android:background="@drawable/background_dialog">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verifique seu Email"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:fontFamily="@font/poppins">
+    </TextView>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/white"
+        android:text="Um código de verificação foi enviado para sua email, aperte confirmar para ir para próxima etapa."
+        android:gravity="center"
+        android:textSize="16dp">
+    </TextView>
+
+    <Button
+        android:id="@+id/confirmDialog"
+        android:layout_marginTop="20dp"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:text="Confirmar"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppins">
+
+    </Button>
+
+</LinearLayout>

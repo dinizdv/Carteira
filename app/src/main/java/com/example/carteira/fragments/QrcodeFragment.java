@@ -1,5 +1,7 @@
 package com.example.carteira.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -20,6 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.carteira.R;
 import com.example.carteira.models.UsuarioModel;
+import com.example.carteira.services.ApiService;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.Writer;
@@ -27,7 +30,13 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Base64;
+
+import okhttp3.Response;
 
 public class QrcodeFragment extends Fragment {
 
@@ -40,6 +49,10 @@ public class QrcodeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_qrcode, container, false);
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Controle_Acesso", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("JWToken", "");
+        String id = sharedPreferences.getString("idUsuario", "");
+
         usuario = (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
         String image = getActivity().getIntent().getStringExtra("ImagemUsuario");
 
@@ -47,7 +60,7 @@ public class QrcodeFragment extends Fragment {
         fotoPerfil = view.findViewById(R.id.imageViewFotoQrCode);
         txtView = view.findViewById(R.id.nome_usuario_fragment_qrcode);
 
-        generateQRCode(usuario.getMatricula());
+        validateQrcode();
 
         Bitmap imagem = getFotoUsuario(image);
         fotoPerfil.setImageBitmap(imagem);
@@ -96,4 +109,14 @@ public class QrcodeFragment extends Fragment {
         canvas.drawRoundRect(new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight()), bitmap.getWidth() / 2, bitmap.getHeight() / 2, paint);
         return roundedBitmap;
     }
+
+    private void validateQrcode() {
+        String validade = getArguments().getString("validadeQRCode");
+        if (validade == "true") {
+            generateQRCode(usuario.getMatricula());
+        } else {
+            generateQRCode("Código Inválido no dia de Hoje");
+        }
+    }
+
 }
