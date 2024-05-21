@@ -8,8 +8,8 @@
     android:background="@drawable/gradient_background"
     >
 
-        <include layout="@layout/header" />
 
+    <include layout="@layout/header" />
 
     <FrameLayout
         android:id="@+id/container"
