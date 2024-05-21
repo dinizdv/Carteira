@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Objects;
 
 import okhttp3.Response;
 
@@ -43,15 +45,12 @@ public class QrcodeFragment extends Fragment {
     private TextView txtView;
     private ImageView imageViewQR, fotoPerfil;
     UsuarioModel usuario;
+    Bundle bundle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_qrcode, container, false);
-
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Controle_Acesso", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("JWToken", "");
-        String id = sharedPreferences.getString("idUsuario", "");
 
         usuario = (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
         String image = getActivity().getIntent().getStringExtra("ImagemUsuario");
@@ -59,6 +58,7 @@ public class QrcodeFragment extends Fragment {
         imageViewQR = view.findViewById(R.id.imageViewQR);
         fotoPerfil = view.findViewById(R.id.imageViewFotoQrCode);
         txtView = view.findViewById(R.id.nome_usuario_fragment_qrcode);
+        bundle = this.getArguments();
 
         validateQrcode();
 
@@ -72,9 +72,9 @@ public class QrcodeFragment extends Fragment {
     private void generateQRCode(String text) {
         try {
             Writer writer = new MultiFormatWriter();
-            BitMatrix bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, 900, 900);
+            BitMatrix bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, 600, 600);
 
-            Bitmap bitmap = Bitmap.createBitmap(900, 900, Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(600, 600, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(Color.TRANSPARENT);
 
@@ -111,12 +111,11 @@ public class QrcodeFragment extends Fragment {
     }
 
     private void validateQrcode() {
-        String validade = getArguments().getString("validadeQRCode");
-        if (validade == "true") {
-            generateQRCode(usuario.getMatricula());
-        } else {
-            generateQRCode("Código Inválido no dia de Hoje");
-        }
+        String validade = bundle.getString("validadeQRCode");
+            if (validade.equals("true")) {
+                generateQRCode(usuario.getMatricula());
+            } else {
+                generateQRCode("Código Inválido no dia de Hoje");
+            }
     }
-
 }
