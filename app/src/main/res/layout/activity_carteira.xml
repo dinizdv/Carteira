@@ -6,21 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityCarteira"
-    android:background="@color/gray_black">
+    android:background="@drawable/gradient_background">
 
     <LinearLayout
         android:id="@+id/card_layout"
-        android:layout_width="360dp"
-        android:layout_height="550dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="320dp"
+        android:layout_height="510dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center"
-        android:background="@drawable/card_background"
+        android:background="@drawable/button_shape"
         android:orientation="horizontal" />
 
-
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="-80dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/xiszao"/>
 
 
 </LinearLayout>
