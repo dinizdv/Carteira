@@ -116,5 +116,16 @@ public class UsuarioRepository {
         return usuario;
     }
 
+    public void deleteById(String id) {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        String selecao = DatabaseHelper.COLUMN_ID + " = ?";
+        String[] argumentos = {id};
+
+        db.delete(DatabaseHelper.TABLE_USUARIO, selecao, argumentos);
+
+        db.close();
+    }
+
 
 }

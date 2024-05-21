@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,9 @@ import androidx.fragment.app.Fragment;
 import com.example.carteira.Login;
 import com.example.carteira.R;
 import com.example.carteira.ConfirmarConta;
+import com.example.carteira.db.DatabaseHelper;
 import com.example.carteira.models.UsuarioModel;
+import com.example.carteira.repositories.UsuarioRepository;
 
 import java.util.Base64;
 
@@ -35,6 +38,8 @@ public class ContaFragment extends Fragment {
     UsuarioModel usuario;
     Button alterarSenha, sairConta;
     SharedPreferences sharedPreferences;
+    UsuarioRepository usuarioRepository;
+    String id;
 
 
     @Override
@@ -43,6 +48,8 @@ public class ContaFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_conta, container, false);
 
         sharedPreferences = getActivity().getSharedPreferences("Controle_Acesso", Context.MODE_PRIVATE);
+        id = sharedPreferences.getString("idUsuario", "");
+        usuarioRepository = new UsuarioRepository(this.getActivity());
 
         fotoPerfil = view.findViewById(R.id.imageView3);
         nomeUsuario = view.findViewById(R.id.nome_usuario_fragment_conta);
@@ -81,6 +88,8 @@ public class ContaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 sharedPreferences.edit().clear().apply();
+                usuarioRepository.deleteById(id);
+
                 Intent intent = new Intent(activity, Login.class);
 
                 startActivity(intent);

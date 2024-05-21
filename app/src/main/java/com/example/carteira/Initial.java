@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -38,13 +39,12 @@ public class Initial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
         SharedPreferences sharedPreferences = getSharedPreferences("Controle_Acesso", Context.MODE_PRIVATE);
+
         String token = sharedPreferences.getString("JWToken", "");
-        String id = sharedPreferences.getString("idUsuario", "");
+        String id = sharedPreferences.getString("id", "");
 
-        InitialFragment initialFragment = new InitialFragment();
         validateQrcode(id, token);
-
-        qrcodeFragment.setArguments(bundle);
+        InitialFragment initialFragment = new InitialFragment();
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, initialFragment).commit();
@@ -82,6 +82,7 @@ public class Initial extends AppCompatActivity {
                 String validade = json.getString("validade_hoje");
 
                 bundle.putString("validadeQRCode", validade);
+                qrcodeFragment.setArguments(bundle);
             }
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
