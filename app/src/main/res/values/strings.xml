@@ -2,45 +2,32 @@
     <string name="app_name">Carteira</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="duvida1">Como recuperar senha</string>
-    <string name="resposta1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen book. It
-        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
-        It was popularised in the 1960swith the release of Letraset sheets containing Lorem Ipsum passages,
-        and more recentlywith desktop like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="duvida1">Como recuperar senha?</string>
+    <string name="resposta1">Para recuperar a senha de login:\n
+1. Acesse a tela de "Conta" no aplicativo;\n
+2. Busque por "Alterar Senha";\n
+3. Confirme seu nome de usúario e a senha que deseja alterar;\n
+4. Digite a nova senha.
+</string>
 
     <string name="duvida2">Como solicitar carteirinha física</string>
-    <string name="resposta2">Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen book. It
-        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
+    <string name="resposta2">Para solicitar a carteirinha física:\n
+1. Acesse a tela de "home" no aplicativo;\n
+2. Busque por "Carteirinha física";\n
+3. Será direcionado para o email da secretária do SENAI;\n
+4. Faça a solicitação da carteirinha.
     </string>
 
     <string name="duvida3">Termos de privacidade</string>
-    <string name="resposta3">Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen book. It
-        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
+    <string name="resposta3"><b>Dados Pessoais</b>\n\n
+1. O Aplicativo coleta informações pessoais apenas quando necessário para fornecer serviços ou suporte ao usuário. Isso inclui nome, idade, endereço de email e número de telefone.\n
+2. Os dados coletados são usados exclusivamente para fins relacionados ao funcionamento do Aplicativo e para melhorar a experiência do usuário. Não compartilhamos suas informações com terceiros sem consentimento explícito.\n\n
+        <b>Segurança</b>\n\n
+1. Temos medidas de segurança robustas para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição. No entanto, nenhum método de transmissão ou armazenamento é totalmente seguro.\n\n
+        <b>Alterações aos Termos</b>\n\n
+1. Reservamo-nos o direito de modificar esses Termos a qualquer momento. Você será notificado por meio do Aplicativo sobre quaisquer mudanças significativas.\n\n
+<b>Contato</b>\n\n
+Para quaisquer perguntas ou preocupações sobre nossos Termos de Serviço ou Política de Privacidade, entre em contato conosco através do email: rocketcoding2023@gmail.com
     </string>
-
-    <string name="duvida4">Como alterar foto de perfil</string>
-    <string name="resposta4">Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen book. It
-        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
-    </string>
-
-    <string name="duvida5">Como alterar o tema do app</string>
-    <string name="resposta5">Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-        Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen book. It
-        has survived not only five centuries,but also the leap into electronic typesetting, remaining essentially unchanged.
-    </string>
-
 
 </resources>
