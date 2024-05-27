@@ -9,8 +9,6 @@
     tools:context=".ActivityCarteira"
     android:background="@drawable/gradient_background">
 
-    <include layout="@layout/header" />
-
     <Button
         android:id="@+id/back_button"
         android:layout_width="30dp"
@@ -23,11 +21,38 @@
     <LinearLayout
         android:id="@+id/card_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="30dp"
+        android:layout_height="600dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_shape"
-        android:orientation="horizontal" />
+        android:orientation="horizontal">
 
 
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="173dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/poppins"
+            android:rotation="90"
+            android:text="Lucas Fonseca"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
+        <ImageView
+            android:layout_width="135dp"
+            android:layout_height="196dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:rotation="90"
+            android:src="@drawable/senai_logo" />
+
+        <ImageView
+            android:layout_width="57dp"
+            android:layout_height="53dp"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginTop="500dp"
+            android:rotation="90"
+            android:src="@drawable/baseline_account_circle_24"/>
+
+    </LinearLayout>
 </LinearLayout>
