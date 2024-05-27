@@ -169,6 +169,22 @@ public class ApiService {
         }
     }
 
+    public Response getNotiUsuario(String id, String token) {
+
+        try {
+            Request request = new Request.Builder()
+                    .url(url + "/notificacao/usuario/" + id)
+                    .get()
+                    .addHeader("Authorization", "Bearer " + token)
+                    .build();
+
+            return client.newCall(request).execute();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private String getBase64Image(Response response) throws IOException {
         if (response.body() != null) {
             byte[] bytes = response.body().bytes();
