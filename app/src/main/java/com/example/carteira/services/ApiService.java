@@ -113,7 +113,7 @@ public class ApiService {
         }
     }
 
-    public Response requestCode(String email, String token) throws IOException {
+    public Response requestCode(String email) throws IOException {
 
         try {
             String registerData = "{\"email\":\"" + email + "\"}";
@@ -124,7 +124,26 @@ public class ApiService {
             Request request = new Request.Builder()
                     .url(url + "/requestcode")
                     .post(body)
-                    .addHeader("Authorization", "Bearer " + token)
+                    .addHeader("content-type", "application/json; charset=utf-8")
+                    .build();
+
+            return client.newCall(request).execute();
+        } catch (Exception e) {
+            throw new RuntimeException("Algo deu Errado!");
+        }
+    }
+
+    public Response verifyCode(String email, String code) throws IOException {
+
+        try {
+            String registerData = "{\"email\":\"" + email + "\",\"code\":\"" + code + "\"}";
+
+            MediaType json = MediaType.parse("application/json; charset=utf-8");
+            RequestBody body = RequestBody.create(registerData, json);
+
+            Request request = new Request.Builder()
+                    .url(url + "/verifycode")
+                    .post(body)
                     .addHeader("content-type", "application/json; charset=utf-8")
                     .build();
 

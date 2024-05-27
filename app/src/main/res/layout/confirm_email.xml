@@ -24,7 +24,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins"
         android:textColor="@color/white"
-        android:text="Um código de verificação foi enviado para sua email, aperte confirmar para ir para próxima etapa."
+        android:text="Um código de verificação foi enviado para seu email, aperte confirmar para ir para próxima etapa."
         android:gravity="center"
         android:textSize="16dp">
     </TextView>

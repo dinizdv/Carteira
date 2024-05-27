@@ -1,9 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/gradient_background"
     tools:context=".CodeVerification">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="230dp"
+        android:layout_height="80dp"
+        android:src="@drawable/senai_logo"
+        />
+
+    <TextView
+        android:fontFamily="@font/poppins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginTitle"
+        android:text="Verificação do Código"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="80dp"
+        />
+
+
+    <EditText
+        android:fontFamily="@font/poppins"
+        android:id="@+id/email_confirm_codigo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColor="@color/gray"
+        android:textColorHint="@color/gray"
+        android:padding="14dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:background="@drawable/container_input_login"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="40dp"
+        />
+
+    <EditText
+        android:fontFamily="@font/poppins"
+        android:id="@+id/codigo_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Código"
+        android:textColor="@color/gray"
+        android:textColorHint="@color/gray"
+        android:padding="14dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:background="@drawable/container_input_login"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="40dp"
+        />
+
+    <Button
+        android:fontFamily="@font/poppins"
+        android:id="@+id/buttonConfirmCodigo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:padding="15dp"
+        android:layout_marginHorizontal="40dp"
+        android:backgroundTint="@color/blue"
+        android:onClick="entrar"
+        android:layout_marginTop="32dp"
+        />
+
+</LinearLayout>

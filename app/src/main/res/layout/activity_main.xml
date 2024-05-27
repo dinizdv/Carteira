@@ -1,4 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,12 +14,7 @@
         android:id="@+id/senai"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:layout_marginTop="160dp"
         android:src="@drawable/senai_logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/textView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:importantForAccessibility="no" />
 
     <TextView
@@ -35,6 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="100dp"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -15,12 +15,12 @@
     <ImageView
         android:id="@+id/notificationIcon"
         android:layout_width="40dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="300dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
         android:contentDescription="Ícone de notificação"
-        android:src="@drawable/baseline_circle_notifications_24"
+        android:background="@drawable/baseline_circle_notifications_24"
         />
 
 

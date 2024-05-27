@@ -40,6 +40,10 @@ public class TrocarSenha extends AppCompatActivity {
 
         String token = sharedPreferences.getString("JWToken", "");
 
+        if (token == null || token.equals("")) {
+            token = getIntent().getStringExtra("JWToken");
+        }
+
         enviarTrocaSenha(this, token);
     }
 

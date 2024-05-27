@@ -5,28 +5,29 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ActivityCarteira"
     android:background="@drawable/gradient_background">
 
-    <LinearLayout
-        android:id="@+id/card_layout"
-        android:layout_width="320dp"
-        android:layout_height="510dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="20dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_shape"
-        android:orientation="horizontal" />
+    <include layout="@layout/header" />
 
     <Button
         android:id="@+id/back_button"
         android:layout_width="30dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="-80dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/xiszao"/>
+
+    <LinearLayout
+        android:id="@+id/card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:background="@drawable/button_shape"
+        android:orientation="horizontal" />
+
 
 
 </LinearLayout>
