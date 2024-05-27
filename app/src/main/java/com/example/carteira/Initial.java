@@ -2,10 +2,13 @@ package com.example.carteira;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +37,8 @@ public class Initial extends AppCompatActivity {
     ApiService apiService = new ApiService();
     Bundle bundle = new Bundle();
 
+    Button btnNoti;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,8 @@ public class Initial extends AppCompatActivity {
 
         String token = sharedPreferences.getString("JWToken", "");
         String id = sharedPreferences.getString("id", "");
+
+        btnNoti = findViewById(R.id.notificationIcon);
 
         validateQrcode(id, token);
         InitialFragment initialFragment = new InitialFragment();
@@ -70,6 +77,8 @@ public class Initial extends AppCompatActivity {
                 return false;
             }
         });
+
+        abrirNoti(this);
     }
 
     private void validateQrcode(String id, String token) {
@@ -87,6 +96,16 @@ public class Initial extends AppCompatActivity {
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void abrirNoti(Context context) {
+        btnNoti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, NotificacaoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

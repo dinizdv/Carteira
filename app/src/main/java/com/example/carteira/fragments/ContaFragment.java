@@ -93,6 +93,7 @@ public class ContaFragment extends Fragment {
                 Intent intent = new Intent(activity, Login.class);
 
                 startActivity(intent);
+                activity.finish();
             }
         });
     }

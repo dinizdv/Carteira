@@ -2,11 +2,11 @@ package com.example.carteira.models;
 
 public class Notificacao {
 
-    private String id;
-    private String mensagem;
+    private String id, mensagem, titulo;
 
-    public Notificacao(String id, String mensagem) {
+    public Notificacao(String id, String titulo, String mensagem) {
         this.id = id;
+        this.titulo = titulo;
         this.mensagem = mensagem;
     }
 
@@ -16,5 +16,12 @@ public class Notificacao {
 
     public String getId() {
         return id;
+    }
+
+    public String getTitulo() { return titulo; }
+
+    @Override
+    public String toString() {
+        return getMensagem();
     }
 }
