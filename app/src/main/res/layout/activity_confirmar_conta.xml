@@ -28,18 +28,17 @@
         android:layout_marginTop="48sp"
         />
 
+
     <TextView
-        android:fontFamily="@font/poppins"
+        android:id="@+id/loginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginTitle"
-        android:text="Confirme que é você !"
-        android:textSize="30sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
         android:layout_marginTop="80dp"
-        />
-
+        android:fontFamily="@font/poppins"
+        android:text="Confirme que é você!"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <EditText
         android:fontFamily="@font/poppins"

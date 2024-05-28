@@ -82,22 +82,21 @@
         android:textColor="@color/blue_light"
         android:layout_marginTop="20dp"
         />
-    
+
     <Button
-        android:fontFamily="@font/poppins"
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fazer login"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:padding="15dp"
         android:layout_marginHorizontal="40dp"
-        android:backgroundTint="@color/blue"
-        android:onClick="entrar"
         android:layout_marginTop="32dp"
-        />
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/poppins"
+        android:onClick="entrar"
+        android:padding="15dp"
+        android:text="Fazer login"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
