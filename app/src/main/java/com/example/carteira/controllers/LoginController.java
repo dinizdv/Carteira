@@ -67,8 +67,8 @@ public class LoginController {
 
         salvarTokenJWT(jwtToken);
 
-        String nome = json.getString("nome");
-        UsuarioModel usuario = usuarioRepository.getByNome(nome);
+        String id = sharedPreferences.getString("idUsuario", "");
+        UsuarioModel usuario = usuarioRepository.getById(id);
 
         if (usuario != null && usuario.getFoto() != null) {
             irParaInitialActivity(usuario, usuario.getFoto());
@@ -143,7 +143,6 @@ public class LoginController {
 
     private void adicionarFotoNoBanco(UsuarioModel usuario, String foto) {
 
-        Log.i("ok3", foto);
         usuario.setFoto(foto);
 
         adicionarUsuarioNoBanco(usuario);
