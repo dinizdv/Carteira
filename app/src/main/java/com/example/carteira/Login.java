@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import com.example.carteira.services.ApiService;
 public class Login extends AppCompatActivity {
 
     EditText etUser, etPassword;
+    ProgressBar progressBar;
     TextView esqueciSenha;
     Button btnLogin;
     LoginController loginController;
@@ -30,6 +32,8 @@ public class Login extends AppCompatActivity {
         etUser = findViewById(R.id.username);
         etPassword = findViewById(R.id.password);
         esqueciSenha = findViewById(R.id.forgetYourPassword);
+
+        progressBar = findViewById(R.id.progress_bar);
 
         btnLogin = findViewById(R.id.buttonLogin);
 
@@ -47,6 +51,7 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 String username = etUser.getText().toString();
                 String password = etPassword.getText().toString();
 

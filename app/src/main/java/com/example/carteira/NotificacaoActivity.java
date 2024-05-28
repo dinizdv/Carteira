@@ -3,6 +3,7 @@ package com.example.carteira;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -79,7 +80,7 @@ public class NotificacaoActivity extends AppCompatActivity {
                     int index = mensagem.indexOf(":");
                     if (index != -1) {
                         titulo = mensagem.substring(0, index);
-                        mensagem = mensagem.substring(index + 1);
+                        mensagem = mensagem.substring(index + 1).trim();
                     } else {
                         titulo = "Sem Título";
                     }
