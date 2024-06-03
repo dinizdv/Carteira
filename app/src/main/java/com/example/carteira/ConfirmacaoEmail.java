@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.carteira.services.ApiService;
@@ -31,6 +32,7 @@ public class ConfirmacaoEmail extends AppCompatActivity {
     EditText emailInput;
     Button confirmar, confirmDialog;
     Dialog dialog;
+    ProgressBar progressBar;
     ApiService apiService = new ApiService();
 
     @Override
@@ -41,6 +43,7 @@ public class ConfirmacaoEmail extends AppCompatActivity {
         fotoPerfil = findViewById(R.id.foto_confirm_email);
         emailInput = findViewById(R.id.email_confirm);
         confirmar = findViewById(R.id.buttonConfirmEmail);
+        progressBar = findViewById(R.id.progress_bar_load);
         dialog = new Dialog(this);
 
         confirm(this);
@@ -54,6 +57,7 @@ public class ConfirmacaoEmail extends AppCompatActivity {
                 String email = emailInput.getText().toString();
 
                 try {
+                    progressBar.setVisibility(View.VISIBLE);
                     Response response = apiService.requestCode(email);
                     if (response.isSuccessful()) {
                         dialog.setContentView(R.layout.confirm_email);
@@ -75,6 +79,7 @@ public class ConfirmacaoEmail extends AppCompatActivity {
                             }
                         });
                     } else {
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(activity, "Credencial Inválida", Toast.LENGTH_SHORT).show();
                     }
                 } catch (IOException e) {

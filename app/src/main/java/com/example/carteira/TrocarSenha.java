@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.carteira.services.ApiService;
@@ -16,6 +17,7 @@ public class TrocarSenha extends AppCompatActivity {
     EditText trocaSenha, trocaSenhaNovamente;
     Button btnEnviar;
 
+    ProgressBar progressBar;
     ApiService apiService = new ApiService();
 
     @Override
@@ -27,6 +29,7 @@ public class TrocarSenha extends AppCompatActivity {
 
         trocaSenha = findViewById(R.id.troca_senha);
         trocaSenhaNovamente = findViewById(R.id.troca_senha_novamente);
+        progressBar = findViewById(R.id.progress_bar);
 
         btnEnviar = findViewById(R.id.buttonEnviar);
 
@@ -47,12 +50,14 @@ public class TrocarSenha extends AppCompatActivity {
                 String senhaNovamente = trocaSenhaNovamente.getText().toString();
 
                 if (senha.equals(senhaNovamente) && !senha.equals("")) {
+                    progressBar.setVisibility(View.VISIBLE);
                     try {
                         Response response = apiService.resetSenha(senha, token);
                         if (response.isSuccessful()) {
                             Toast.makeText(context, "Sucesso ao trocar Senha", Toast.LENGTH_LONG).show();
                             finish();
                         } else {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(context, "Houve um erro ao trocar Senha", Toast.LENGTH_LONG).show();
                             trocaSenha.setText("");
                             trocaSenhaNovamente.setText("");
@@ -61,6 +66,7 @@ public class TrocarSenha extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(context, "As Senhas não Correspondem", Toast.LENGTH_LONG).show();
                 }
             }

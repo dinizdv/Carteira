@@ -99,5 +99,13 @@
         android:layout_marginTop="32dp"
         />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progress="20"
+        android:visibility="invisible"/>
+
 
 </LinearLayout>

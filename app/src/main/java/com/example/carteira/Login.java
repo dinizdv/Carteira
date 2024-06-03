@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
         apiService = new ApiService();
         usuarioRepository = new UsuarioRepository(this);
 
-        loginController = new LoginController(this, apiService, usuarioRepository);
+        loginController = new LoginController(this, apiService, usuarioRepository, progressBar);
 
         login();
         esqueciSenha(this);

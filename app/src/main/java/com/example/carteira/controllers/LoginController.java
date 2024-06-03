@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.carteira.Initial;
+import com.example.carteira.R;
 import com.example.carteira.models.UsuarioModel;
 import com.example.carteira.repositories.UsuarioRepository;
 import com.example.carteira.services.ApiService;
@@ -26,11 +29,13 @@ public class LoginController {
     private ApiService apiService;
     private UsuarioRepository usuarioRepository;
     private SharedPreferences sharedPreferences;
+    ProgressBar progressBar;
 
 
-    public LoginController(Activity activity, ApiService apiService, UsuarioRepository usuarioRepository) {
+    public LoginController(Activity activity, ApiService apiService, UsuarioRepository usuarioRepository, ProgressBar progressBar) {
         this.apiService = apiService;
         this.activity = activity;
+        this.progressBar = progressBar;
         this.usuarioRepository = usuarioRepository;
         this.sharedPreferences = activity.getSharedPreferences("Controle_Acesso", Context.MODE_PRIVATE);
     }
@@ -42,9 +47,16 @@ public class LoginController {
                 try {
                     Response response = apiService.getToken(username, password);
                     if (response.isSuccessful()) {
+                        progressBar.setVisibility(View.VISIBLE);
                         processarTokenJWT(response);
                     } else {
-                        mostrarToast("Credenciais Inválidas");
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setVisibility(View.GONE);
+                                mostrarToast("Credenciais Inválidas");
+                            }
+                        });
                     }
                 } catch (IOException e) {
                     mostrarToast("Erro de conexão com o servidor");

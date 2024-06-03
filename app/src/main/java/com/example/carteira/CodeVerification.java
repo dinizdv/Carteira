@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.carteira.services.ApiService;
@@ -27,6 +28,7 @@ public class CodeVerification extends AppCompatActivity {
     EditText emailInput, codigoInput;
     Button confirmar;
     ApiService apiService = new ApiService();
+    ProgressBar progressBar;
 
     String token;
 
@@ -39,6 +41,7 @@ public class CodeVerification extends AppCompatActivity {
         codigoInput = findViewById(R.id.codigo_confirm);
 
         confirmar = findViewById(R.id.buttonConfirmCodigo);
+        progressBar = findViewById(R.id.progress_bar_load);
 
         token = getIntent().getStringExtra("JWToken");
 
@@ -53,6 +56,7 @@ public class CodeVerification extends AppCompatActivity {
                 String code = codigoInput.getText().toString();
 
                 try {
+                    progressBar.setVisibility(View.VISIBLE);
                     Response response = apiService.verifyCode(email, code);
                     if (response.isSuccessful()) {
 
@@ -65,6 +69,7 @@ public class CodeVerification extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(activity, "Credenciais Inválidas", Toast.LENGTH_SHORT).show();
                     }
                 } catch (IOException | JSONException e) {

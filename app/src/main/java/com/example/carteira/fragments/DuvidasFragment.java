@@ -42,21 +42,30 @@ public class DuvidasFragment extends Fragment {
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 expand(v, details1);
+                details2.setVisibility(View.GONE);
+                details3.setVisibility(View.GONE);
             }
         });
 
         cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 expand(v, details2);
+                details1.setVisibility(View.GONE);
+                details3.setVisibility(View.GONE);
             }
         });
 
         cardView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 expand(v, details3);
+                details1.setVisibility(View.GONE);
+                details2.setVisibility(View.GONE);
             }
         });
 

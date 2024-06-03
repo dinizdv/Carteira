@@ -70,6 +70,7 @@ public class InitialFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ActivityCarteira.class);
+                intent.putExtra("Usuario", usuario);
                 startActivity(intent);
             }
         });

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class ConfirmarConta extends AppCompatActivity {
     ImageView img;
     EditText email, senha;
     Button btnConfirmarConta;
+    ProgressBar progressBar;
 
     ApiService apiService = new ApiService();
 
@@ -44,6 +46,7 @@ public class ConfirmarConta extends AppCompatActivity {
         email = findViewById(R.id.username_confirm);
         senha = findViewById(R.id.password_confirm);
         btnConfirmarConta = findViewById(R.id.buttonConfirm);
+        progressBar = findViewById(R.id.progress_bar);
 
         UsuarioModel usuario = (UsuarioModel) getIntent().getSerializableExtra("Usuario");
 
@@ -77,6 +80,7 @@ public class ConfirmarConta extends AppCompatActivity {
                 String senhaUser = senha.getText().toString();
 
                 try {
+                    progressBar.setVisibility(View.VISIBLE);
                     Response response = apiService.getToken(emailUser, senhaUser);
                     if (response.isSuccessful()) {
                         Intent intent = new Intent(context, TrocarSenha.class);
@@ -85,6 +89,7 @@ public class ConfirmarConta extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(context, "Credenciais Inválidas", Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
