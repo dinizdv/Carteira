@@ -34,7 +34,7 @@ public class InitialFragment extends Fragment {
         usuario = (UsuarioModel) getActivity().getIntent().getSerializableExtra("Usuario");
 
         txtTitle = view.findViewById(R.id.titleInit);
-        txtTitle.setText("Bem Vindo, " + usuario.getNome() +"!");
+        txtTitle.setText("Bem Vindo (a), " + usuario.getNome() +"!");
 
         txt1 = view.findViewById(R.id.nome_text_view);
         txt1.setText(usuario.getNome());
