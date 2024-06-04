@@ -36,7 +36,7 @@
         android:id="@+id/troca_senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Senha"
+        android:hint="Nova senha"
         android:textColor="@color/gray"
         android:textColorHint="@color/gray"
         android:padding="14dp"
