@@ -17,6 +17,9 @@ import com.example.carteira.ActivityCarteira;
 import com.example.carteira.R;
 import com.example.carteira.models.UsuarioModel;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class InitialFragment extends Fragment {
 
@@ -24,7 +27,7 @@ public class InitialFragment extends Fragment {
     private TextView txt1, txt2, txtTitle;
     private Button btnAcessar;
 
-    private LinearLayout rl1, rl2;
+    private LinearLayout rl2;
     private UsuarioModel usuario;
 
     @Override
@@ -42,7 +45,6 @@ public class InitialFragment extends Fragment {
         txt2 = view.findViewById(R.id.matricula_text_view);
         txt2.setText(usuario.getMatricula());
 
-        rl1 = view.findViewById(R.id.card_layout_qr);
         rl2 = view.findViewById(R.id.card_layout_mensagem);
         enviarEmail();
 
@@ -56,11 +58,24 @@ public class InitialFragment extends Fragment {
         rl2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:senai@gmail.com"));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Solicitação de Nova Carteirinha");
-                intent.putExtra(Intent.EXTRA_TEXT, "Olá, sou o " + usuario.getNome() + "do curso " + usuario.getCurso() + " e gostaria de solicitar uma nova carteirinha!");
-                startActivity(intent);
+                String nomeCurso;
+                try {
+                    JSONObject jsonObject = new JSONObject(usuario.getCurso());
+                    nomeCurso = jsonObject.getString("nome");
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Intent selectorIntent = new Intent(Intent.ACTION_SENDTO);
+                selectorIntent.setData(Uri.parse("mailto:"));
+
+                final Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"senai@gmail.com"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Solicitação de Nova Carteirinha!");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Olá, sou o " + usuario.getNome() + " do curso " + nomeCurso + " e gostaria de solicitar uma nova carteirinha!");
+                emailIntent.setSelector(selectorIntent);
+
+                startActivity(Intent.createChooser(emailIntent, "teste"));
             }
         });
     }
